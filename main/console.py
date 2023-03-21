@@ -1,4 +1,6 @@
 import os
+import asyncio
+import Translate as tran
 import speech_synthesis as speech
 from uuid import uuid4
 from gpt3contextual import ContextualChatGPT, ContextManager
@@ -30,4 +32,6 @@ async def response():
         with open("text.txt", mode= "w", encoding= "utf-8") as file:
             file.write(data)
 
+        await tran.translate_text()
+        # await asyncio.sleep(1)
         await speech.speaker()

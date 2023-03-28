@@ -7,7 +7,7 @@ from gpt3contextual import ContextualChatGPT, ContextManager
 
 context_key = str(uuid4())
 
-with open("set.txt", mode= "r", encoding= "utf-8") as set:
+with open("text/set.txt", mode= "r", encoding= "utf-8") as set:
     setUp = set.read()
 
 async def main():
@@ -29,7 +29,7 @@ async def main():
         print(f"{cm.agentname}> {resp}")
         
         data = completion["choices"][0]["message"]["content"]
-        with open("text.txt", mode= "w", encoding= "utf-8") as file:
+        with open("text/text.txt", mode= "w", encoding= "utf-8") as file:
             file.write(data)
 
         await tran.translate_text()

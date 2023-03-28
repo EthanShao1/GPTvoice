@@ -1,4 +1,5 @@
 import os
+import fileOpen as FO
 import azure.cognitiveservices.speech as speechsdk
 
 speech_config = speechsdk.SpeechConfig(subscription= os.environ.get('SPEECH_KEY'),
@@ -11,7 +12,6 @@ speech_config.speech_synthesis_voice_name='ja-JP-AoiNeural'
 speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
 
 async def speaker():
-    with open("text/text.txt", mode= "r", encoding= "utf-8") as file:
-        text = file.read()
+    text = FO.fileRead("text/text.txt")
         
     speech_synthesis_result = speech_synthesizer.speak_text_async(text).get()

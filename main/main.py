@@ -1,14 +1,13 @@
 import os
 import asyncio
+import fileOpen as FO
 import Translate as tran
 import speech_synthesis as speech
 from uuid import uuid4
 from gpt3contextual import ContextualChatGPT, ContextManager
 
 context_key = str(uuid4())
-
-with open("text/set.txt", mode= "r", encoding= "utf-8") as set:
-    setUp = set.read()
+setUp = FO.fileRead("text/set.txt")
 
 async def main():
     cm = ContextManager(
@@ -29,8 +28,7 @@ async def main():
         print(f"{cm.agentname}> {resp}")
         
         data = completion["choices"][0]["message"]["content"]
-        with open("text/text.txt", mode= "w", encoding= "utf-8") as file:
-            file.write(data)
+        FO.fileWrite("text/text.txt", data)
 
         await tran.translate_text()
         await speech.speaker()

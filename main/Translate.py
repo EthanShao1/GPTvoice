@@ -2,7 +2,7 @@ import fileOpen as FO
 from translate import Translator
 
 async def translate_text():
-    text = FO.fileRead("text/text.txt")
+    text = FO.fileRead("text/text.txt").strip("*").split("*")
     if len(text) > 1:
         a = 1
     else:
@@ -12,4 +12,4 @@ async def translate_text():
 
     result = translator.translate(text[a])
 
-    FO.fileWrite("text/text.txt", result)
+    FO.fileWrite("text/read.txt", result)

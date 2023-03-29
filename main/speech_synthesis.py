@@ -12,6 +12,6 @@ speech_config.speech_synthesis_voice_name='ja-JP-AoiNeural'
 speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
 
 async def speaker():
-    text = FO.fileRead("text/text.txt")
+    text = FO.fileRead("text/read.txt")
         
     speech_synthesis_result = speech_synthesizer.speak_text_async(text).get()
